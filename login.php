@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         else
         {
             $username=array('sec', 'doc');
-            $userpwd=array('1234', '4567');
+            $userpwd=array('12345678', '45671234');
 
             if (($uid==$username[0] && $pwd==$userpwd[0]) OR ($uid==$username[1] && $pwd==$userpwd[1]))
             {
