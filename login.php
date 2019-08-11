@@ -34,13 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $username=array('sec', 'doc');
             $userpwd=array('1234', '4567');
 
-            if ($uid==$username[0] && $pwd==$userpwd[0])
+            if (($uid==$username[0] && $pwd==$userpwd[0]) OR ($uid==$username[1] && $pwd==$userpwd[1]))
             {
-                header("Location:menu1.php");
-            }
-            else if ($uid==$username[1] && $pwd==$userpwd[1])
-            {
-                header("Location:menu2.php");
+                header("Location:menu.php");
             }
             else
             {
