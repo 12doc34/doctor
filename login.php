@@ -1,24 +1,27 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=doctor'; 
+$dsn = 'mysql:host=localhost;dbname=doctor';
 // עקב בעיית תאימות בין גרסאות שרת מסד הנתונים
 // וכדי שהיישום יעבוד בכל המחשבי,ם היישום יורץ עם זיהוי של המשתמש
 // הראשי שהוא בעל הרשאות מלאות וללא סיסמה
-$username = 'root';
-$password = '';
- 
+$username = '';
+$userpwd = '';
+$uid='';
+$pwd='';
+$ex='';
+
 try {
-    $db = new PDO($dsn, $username, $password);
+    $db = new PDO($dsn, $username, $userpwd);
     $db->exec("set NAMES utf8"); // this prevent the ?????? on the ou    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo 'Problem establishing connection to DB. ' . $ex->getMessage();
+    echo 'Problem establishing connection to DB. ' ;
     exit();
 }
 
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if ($_POST["command"]=="login")
     {
@@ -28,21 +31,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
         else
         {
-            $usrname=array('sec', 'doc');
+            $username=array('sec', 'doc');
             $userpwd=array('1234', '4567');
-            
-             if ($uid==$username[0] && $pwd==$userpwd[0])
-             {
+
+            if ($uid==$username[0] && $pwd==$userpwd[0])
+            {
                 header("Location:menu1.php");
-              }
-             else if ($uid==$username[1] && $pwd==$userpwd[1])
-             {
-             header("Location:menu2.php");
-             }
-             else 
-             {
-               echo "username or password wrong";
-             }
+            }
+            else if ($uid==$username[1] && $pwd==$userpwd[1])
+            {
+                header("Location:menu2.php");
+            }
+            else
+            {
+                echo "username or password wrong";
+            }
         }
     }
 }
@@ -52,22 +55,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>log in page</title>
-       
-    </head>
-    <body>
-           <h1>log in</h1>
-        <form method="post">
-            User Id:
-            <input type="text" name="uid" maxlength="80" size="60"/><br>
-            Password:
-            <input type="password" name="pwd" maxlength="14" size="14"/><br/>
-            <input type="reset" value="reset"/>
-            <button type="submit" name="command" value="login">כנס</button>
-        </form>
-        <?= $err ?>
-      
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>log in page</title>
+
+</head>
+<body>
+<h1>log in</h1>
+<form method="post">
+    User Id:
+    <input type="text" name="uid" maxlength="80" size="60"/><br>
+    Password:
+    <input type="password" name="pwd" maxlength="14" size="14"/><br/>
+    <input type="reset" value="reset"/>
+    <button type="submit" name="command" value="login">כנס</button>
+</form>
+
+
+</body>
 </html>
