@@ -1,8 +1,8 @@
 <?php
 session_start();
-unset($_SESSION['username']);
+unset($_SESSION['$username']);
 session_destroy();
-header("Location: menu1.php, menu2.php");
+header("Location: menu.php");
 exit;
 ?>
 <html>
