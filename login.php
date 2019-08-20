@@ -22,8 +22,6 @@ try {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    if ($_POST["command"]=="login")
-    {
         if (empty($_POST["uid"]) || empty($_POST["pwd"]))
         {
             echo "username or password empty";
@@ -42,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 echo "username or password wrong";
             }
         }
-    }
 }
 
 ?>
