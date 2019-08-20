@@ -1,0 +1,54 @@
+<?php
+$dsn = 'mysql:host=localhost;dbname=doctor';
+try
+    {
+        $query = 'SELECT * FROM staff';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();  
+        return $result;
+    }
+    catch (PDOException $ex) 
+    { 
+        $error= 'staff not exist';   
+        exit();
+    }
+
+    if (isset($_GET['staffnum']))
+        $staff_num = $_GET['staffnum'];
+    if (isset($_GET['action']))
+        $action = $_GET['action'];
+    
+if ($action == 'delete_product')
+    {
+        // get the id of the product to delete
+        $staff_num = $_GET['staffnum'];
+        delete_product($staffnum);
+    }
+?>
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>staff</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h3>staff:</h3>
+        <table style="width:100%">
+           <tr>
+               <th value="<?= $product['ProductId'] ?>">staff number</th>
+               <th>staff name</th> 
+               <th>staff mail</th>
+               <th>staff password</th>
+               <th>staff job</th>
+           </tr>
+        </table>
+    </body>
+</html>
