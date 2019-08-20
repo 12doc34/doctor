@@ -11,7 +11,6 @@ $ex='';
 
 try {
     $db = new PDO($dsn, $username, $userpwd);
-    $db->exec("set NAMES utf8"); // this prevent the ?????? on the ou    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo 'Problem establishing connection to DB. ' ;
