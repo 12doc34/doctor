@@ -1,4 +1,5 @@
 <?php
+session_start();
 $dsn = 'mysql:host=localhost;dbname=doctor';
 // עקב בעיית תאימות בין גרסאות שרת מסד הנתונים
 // וכדי שהיישום יעבוד בכל המחשבי,ם היישום יורץ עם זיהוי של המשתמש
@@ -31,9 +32,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $username=array('sec', 'doc');
             $userpwd=array('12345678', '45671234');
 
-            if (($uid==$username[0] && $pwd==$userpwd[0]) OR ($uid==$username[1] && $pwd==$userpwd[1]))
+            if ($uid==$username[0] && $pwd==$userpwd[0]);
             {
-                header("Location:menu.php");
+                $_SESSION["username"]='sec';
+                header("Location:menu.php");  
+            }
+            else if ($uid==$username[1] && $pwd==$userpwd[1]);
+            {
+            $_SESSION["username"]='doc';
+            header("Location:menu.php");
             }
             else
             {
@@ -41,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             }
         }
 }
+
 
 ?>
 
