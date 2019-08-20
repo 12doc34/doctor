@@ -19,11 +19,10 @@ try
     if (isset($_GET['action']))
         $action = $_GET['action'];
     
-if ($action == 'delete_product')
+if ($action == 'delete_staff')
     {
-        // get the id of the product to delete
         $staff_num = $_GET['staffnum'];
-        delete_product($staffnum);
+        delete_staff($staffnum);
     }
 ?>
 
@@ -43,7 +42,7 @@ and open the template in the editor.
         <h3>staff:</h3>
         <table style="width:100%">
            <tr>
-               <th value="<?= $product['ProductId'] ?>">staff number</th>
+               <th value="<?= $_GET['staffnum'] ?>">staff number</th>
                <th>staff name</th> 
                <th>staff mail</th>
                <th>staff password</th>
